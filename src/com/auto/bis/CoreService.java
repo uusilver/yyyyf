@@ -75,8 +75,12 @@ public static String processRequest(HttpServletRequest request) {
             // 事件类型  
             String eventType = requestMap.get("Event");  
             // 订阅  
-            if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {  
-                respContent = "谢谢您的关注！回复？获得更多信息！";  
+            if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
+            	StringBuffer buffer = new StringBuffer();  
+         	    buffer.append("您好，我是小悠，感谢您的关注：").append("\n\n");  
+         	    buffer.append("您的全场现金抵用卷:").append("\n");  
+         	    buffer.append("ABCD").append("\n\n"); 
+                respContent = buffer.toString();  
             }  
             // 取消订阅  
             else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {  
@@ -92,7 +96,8 @@ public static String processRequest(HttpServletRequest request) {
                 } else if (eventKey.equals("12")) {  
                     respContent = "最新优惠被点击！";  
                 } else if (eventKey.equals("13")) {  
-                    respContent = "当月推荐被点击！";  
+                	// 创建图文消息  
+                	return ServiceFunctions.getNewsMessage(newsMessage, "1");
                 } else if (eventKey.equals("14")) {  
                     respContent = "自助客服被点击！";  
                 } else if (eventKey.equals("15")) {  

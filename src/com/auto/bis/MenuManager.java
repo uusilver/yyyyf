@@ -16,9 +16,9 @@ public class MenuManager {
 	//本地执行menu修改命令
     public static void main(String[] args) {  
         // 第三方用户唯一凭证  
-        String appId = "wx5ec26e4e31c46770";  
+        String appId = "wx1deac355c85a2e85";  
         // 第三方用户唯一凭证密钥  
-        String appSecret = "e09e35aa2b400d6539ab9b5707cb127d";  
+        String appSecret = "afd24b571800a255eea67ee67a10192a ";  
   
         // 调用接口获取access_token  
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);  

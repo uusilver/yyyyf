@@ -10,15 +10,14 @@ import com.auto.util.MessageUtil;
 public class ServiceFunctions {
 
 	/** 
-	 * xiaoqrobot的主菜单 
-	 *  
+	 * 悠悠银艺坊。
+	 * @author Junying Li
+	 * @date 2014-08-05
 	 * @return 
 	 */  
 	public static String getMainMenu() {  
 	    StringBuffer buffer = new StringBuffer();  
 	    buffer.append("您好，我是小悠，感谢您的关注：").append("\n\n");  
-	    buffer.append("您的全场现金抵用卷:").append("\n");  
-	    buffer.append("ABCD").append("\n\n");  
 //	    buffer.append("3  周边搜索").append("\n");  
 //	    buffer.append("4  歌曲点播").append("\n");  
 //	    buffer.append("5  经典游戏").append("\n");  
@@ -33,13 +32,13 @@ public class ServiceFunctions {
 		List<Article> articleList = new ArrayList<Article>();  
 		if ("1".equals(content)) {  
             Article article = new Article();  
-            article.setTitle("安可信");  
+            article.setTitle("九月主打");  
             // 图文消息中可以使用QQ表情、符号表情  
-            article.setDescription("信生网络，" + emoji(0x1F6B9)  
-                    + "，无锡安可信网络科技有限公司旗下IDC品牌网站！\n\n总部设在江苏无锡。\n\n基于互联网提供各类网络服务解决方案的中国网络增值服务运营商.");  
+            article.setDescription("悠悠银艺坊，" + emoji(0x1F6B9)  
+                    + "，开学季主打！\n\n蝴蝶款耳钉。\n\n青春如霓裳翩舞的蝴蝶，青春就该绽放！.");  
             // 将图片置为空  
-            article.setPicUrl("");  
-            article.setUrl("http://www.idcvisa.com");  
+            article.setPicUrl("http://wd.geilicdn.com/vshop692450-1394027937-5.jpg?w=480&h=0");  
+            article.setUrl("http://wd.koudai.com/item.html?itemID=21169354");  
             articleList.add(article);  
             newsMessage.setArticleCount(articleList.size());  
             newsMessage.setArticles(articleList);  
