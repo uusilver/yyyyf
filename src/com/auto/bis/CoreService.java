@@ -42,15 +42,18 @@ public static String processRequest(HttpServletRequest request) {
         
         // 文本消息  
         if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {  
-            respContent = "您发送的是文本消息！";  
+            //respContent = "您发送的是文本消息！";  
             String content = requestMap.get("Content");
-            if(content.equalsIgnoreCase("\\?")||content.equalsIgnoreCase("?")||content.equalsIgnoreCase("？")){
-            	respContent = ServiceFunctions.getMainMenu();
-            	  textMessage.setContent(respContent);  
-                  respMessage = MessageUtil.textMessageToXml(textMessage);  
-            }else{
+            if(content.equalsIgnoreCase("1")){
+            	//包邮信息
+            	return ServiceFunctions.getTextMessage(textMessage, "00");  
+            }else if(content.equalsIgnoreCase("2")){
             	//返回图文信息
-            	return ServiceFunctions.getNewsMessage(newsMessage, content);
+            	return ServiceFunctions.getTextMessage(textMessage, "12");
+            }else if(content.startsWith("#")){
+            	//单独处理邀请码的生成
+	            textMessage.setContent(ServiceFunctions.getAgentCode(content));  
+	            respMessage = MessageUtil.textMessageToXml(textMessage);
             }
             
         }  
@@ -93,15 +96,18 @@ public static String processRequest(HttpServletRequest request) {
             	  
                 if (eventKey.equals("11")) {  
                     respContent = "品牌介绍被点击！";  
-                } else if (eventKey.equals("12")) {  
-                    respContent = "最新优惠被点击！";  
+                } else if (eventKey.equals("12")) { 
+                	//最新优惠
+                    return ServiceFunctions.getTextMessage(textMessage, "12");
                 } else if (eventKey.equals("13")) {  
                 	// 创建图文消息  
-                	return ServiceFunctions.getNewsMessage(newsMessage, "1");
+                	return ServiceFunctions.getNewsMessage(newsMessage, "13");
                 } else if (eventKey.equals("14")) {  
-                    respContent = "自助客服被点击！";  
+                    //respContent = "自助客服被点击！";  
+                    return ServiceFunctions.getTextMessage(textMessage, "14");
                 } else if (eventKey.equals("15")) {  
-                    respContent = "我要赚钱被点击！";  
+                    //respContent = "我要赚钱被点击！";  
+                    return ServiceFunctions.getTextMessage(textMessage, "15");
                 } else if (eventKey.equals("21")) {  
                     respContent = "今日亮点被点击！";  
                 } else if (eventKey.equals("22")) {  
@@ -109,8 +115,8 @@ public static String processRequest(HttpServletRequest request) {
                 }
             }  
         }  
-        textMessage.setContent(respContent);  
-        respMessage = MessageUtil.textMessageToXml(textMessage);  
+        //textMessage.setContent(respContent);  
+        //respMessage = MessageUtil.textMessageToXml(textMessage);  
       
     } catch (Exception e) {  
         e.printStackTrace();  

@@ -10,12 +10,12 @@ public class DSTester{
         try {  
             Connection con = null;  
             con = DBUtils.getConnection();  
-            String sql = "select * from user";  
+            String sql = "select * from M_AGENT_TB";  
             PreparedStatement ps = con.prepareStatement(sql);  
             ResultSet rs = null;  
             rs = ps.executeQuery();  
             while(rs.next())  
-            System.out.println(rs.getString("name"));  
+            System.out.println(rs.getString("A_NAME"));  
         } catch (SQLException e) {  
             e.printStackTrace();  
         }  
