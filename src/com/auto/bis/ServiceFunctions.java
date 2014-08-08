@@ -11,6 +11,7 @@ import com.auto.msg.resp.Article;
 import com.auto.msg.resp.NewsMessage;
 import com.auto.msg.resp.TextMessage;
 import com.auto.util.DBUtils;
+import com.auto.util.InforPool;
 import com.auto.util.MessageUtil;
 
 public class ServiceFunctions {
@@ -33,41 +34,67 @@ public class ServiceFunctions {
 //	    buffer.append("回复“?”显示此帮助菜单");  
 	    return buffer.toString();  
 	} 
-	
+	//获得当月推荐
 	public static String getNewsMessage(NewsMessage newsMessage, String content){
 		List<Article> articleList = new ArrayList<Article>();  
-		if ("13".equals(content)) {  
-            Article article = new Article();  
-            article.setTitle("九月主打");  
-            // 图文消息中可以使用QQ表情、符号表情  
-            article.setDescription("悠悠银艺坊，开学季主打！\n\n蝴蝶款耳钉。\n\n青春如霓裳翩舞的蝴蝶，青春就该绽放！");  
-            // 将图片置为空  
-            article.setPicUrl("http://wd.geilicdn.com/vshop692450-1394027937-5.jpg?w=480&h=0");  
-            article.setUrl("http://wd.koudai.com/item.html?itemID=21169354");  
-            articleList.add(article);  
+		if ("13".equals(content)) { 
+			Article article = InforPool.getMonthRecFromPool("month");
+			articleList.add(article);  
             newsMessage.setArticleCount(articleList.size());  
             newsMessage.setArticles(articleList);  
             return MessageUtil.newsMessageToXml(newsMessage);  
-        }  
+        }//end of if  
+		return null;
+	}
+	//获得品牌介绍
+	public static String getBrandNewsMessage(NewsMessage newsMessage, String content){
+		List<Article> articleList = new ArrayList<Article>();  
+		if ("11".equals(content)) { 
+			Article article = InforPool.getBrandNewsFromPool("brand");
+			articleList.add(article);  
+            newsMessage.setArticleCount(articleList.size());  
+            newsMessage.setArticles(articleList);  
+            return MessageUtil.newsMessageToXml(newsMessage);  
+        }//end of if  
+		return null;
+	}
+	//获得银领时尚里的内容
+	public static String getDailyNewsMessage(NewsMessage newsMessage, String content){
+		List<Article> articleList = new ArrayList<Article>();  
+		if ("21".equals(content)) { 
+			articleList = InforPool.getFashionNewsFromPool("today",1);
+            newsMessage.setArticleCount(articleList.size());  
+            newsMessage.setArticles(articleList);  
+            return MessageUtil.newsMessageToXml(newsMessage);  
+        }//end of if
+		else if("22".equals(content)){
+			//2表示回顾往期的刊数
+			articleList = InforPool.getFashionNewsFromPool("all",2);
+            newsMessage.setArticleCount(articleList.size());  
+            newsMessage.setArticles(articleList);  
+            return MessageUtil.newsMessageToXml(newsMessage); 
+		}
 		return null;
 	}
 	//按钮状态处理
 	public static String getTextMessage(TextMessage textMessage, String content){
 		if("12".equals(content)){
-			String str = "当前全场满100减5元,满200减10元！";
-			textMessage.setContent(str);
+			//String str = "当前全场满100减5元,满200减10元！";
+			textMessage.setContent(InforPool.getNewsFromPool("12"));
 			return MessageUtil.textMessageToXml(textMessage); 
 		}else if("14".equals(content)){
-			String str = "您好，客服小悠很高兴为您服务！回复“1”查看包邮地区；回复“2”查看最新优惠";
-			textMessage.setContent(str);
+			//自助客服
+			//String str = "您好，客服小悠很高兴为您服务！回复“1”查看包邮地区；回复“2”查看最新优惠";
+			textMessage.setContent(InforPool.getNewsFromPool("14"));
 			return MessageUtil.textMessageToXml(textMessage); 
 		}else if("15".equals(content)){
-			String str = "您好，悠悠银艺坊欢迎您的加入，获得推广码，邀请小伙伴们消费后即可获得丰厚返利，推广越多，返利越多！回复#ZQ#姓名#手机号,立即获得推广码！例:#ZQ#张三#13841213245";
-			textMessage.setContent(str);
+			//推广码
+			//String str = "您好，悠悠银艺坊欢迎您的加入，获得推广码，邀请小伙伴们消费后即可获得丰厚返利，推广越多，返利越多！回复#ZQ#姓名#手机号,立即获得推广码！例:#ZQ#张三#13841213245";
+			textMessage.setContent(InforPool.getNewsFromPool("15"));
 			return MessageUtil.textMessageToXml(textMessage); 
 		}else if("00".equals(content)){
-			String str = "包邮地区仅限江浙沪！全场满300全国包邮！";
-			textMessage.setContent(str);
+			//String str = "包邮地区仅限江浙沪！全场满300全国包邮！";
+			textMessage.setContent(InforPool.getNewsFromPool("00"));
 			return MessageUtil.textMessageToXml(textMessage); 
 		}
 		return null;
@@ -87,7 +114,7 @@ public class ServiceFunctions {
             		ResultSet rs = null;
             		try{
 	            		conn = DBUtils.getConnection();
-	            		String sql = "INSERT INTO M_AGENT_TB (A_NAME, A_TELNO, A_ADDDATE, A_EDITDATE) VALUES (?,?,?,?)";
+	            		String sql = "INSERT INTO m_agent_tb (A_NAME, A_TELNO, A_ADDDATE, A_EDITDATE) VALUES (?,?,?,?)";
 	            		ps = conn.prepareStatement(sql);
 	            		ps.setString(1, str[2]);
 	            		ps.setString(2, str[3]);
@@ -97,23 +124,24 @@ public class ServiceFunctions {
 	            		ps.setDate(4, sqlDate);
 	            		ps.executeUpdate();
 	            		ps.clearBatch();
-	            		rs = ps.executeQuery("SELECT MAX(ID) FROM M_AGENT_TB");
+	            		rs = ps.executeQuery("SELECT MAX(ID) FROM m_agent_tb");
 	            		if(rs.next()){
 	            			String chars = "abcdefghijklmnopqrstuvwxyz";
 	            			String extraCode = String.valueOf(chars.charAt((int)(Math.random() * 26)))+String.valueOf(chars.charAt((int)(Math.random() * 26)));
 	            			String agentID = String.valueOf(rs.getInt(1));
 	            			String agentCode = agentID+extraCode;
-	            			sql = "INSERT INTO M_AGENT_CODE(AGENT_ID,AGENT_CODE) VALUES (?,?)";
+	            			sql = "INSERT INTO m_agent_code(AGENT_ID,AGENT_CODE) VALUES (?,?)";
 	            			ps.clearBatch();
 	            			ps = conn.prepareStatement(sql);
 	            			ps.setString(1, agentID);
 	            			ps.setString(2, agentCode);
 	            			ps.executeUpdate();
-	            			return agentCode;
+	            			return "申请成功！您的推广码是："+agentCode;
 	            		}
             		}catch(Exception e){
             			System.out.println(e.getMessage());
-            			return "系统错误，请稍后再试!";
+            			return e.getMessage();
+            			//return "系统错误，请稍后再试!";
             		}finally{
             			DBUtils.free(conn, ps, rs);
             		}
@@ -128,8 +156,9 @@ public class ServiceFunctions {
         }
 		return strss;
 	}
+	//根据键值获得对应的相应内容
 	
-	
+	//根据传入的键值获得对应的内容
 	public static String emoji(int hexEmoji) {  
         return String.valueOf(Character.toChars(hexEmoji));  
     }  

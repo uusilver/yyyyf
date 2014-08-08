@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
+
+import com.auto.msg.resp.Article;
 
 public class Test {
 
@@ -17,6 +20,15 @@ public class Test {
 //		System.out.println(testAgentCode(s));
 		
 		//
+		//testConn();
+//		Article a = InforPool.getMonthRecFromPool("MONTH");
+//		System.out.println(a.getTitle());
+		
+		//System.out.println(getKeyValue("00"));
+		List<Article> list = InforPool.getFashionNewsFromPool("today",2); 
+		for(Article a:list){
+			System.out.println(a.getTitle());
+		}
 	}
 
 	public static String testAgentCode(String content){
@@ -44,7 +56,7 @@ public class Test {
 	            		ps.executeUpdate();
 	            		ps.clearBatch();
 	            		rs = ps.executeQuery("SELECT MAX(ID) FROM M_AGENT_TB");
-	            		if(rs.next()){
+	            		while(rs.next()){
 	            			String chars = "abcdefghijklmnopqrstuvwxyz";
 	            			String extraCode = String.valueOf(chars.charAt((int)(Math.random() * 26)))+String.valueOf(chars.charAt((int)(Math.random() * 26)));
 	            			String agentID = String.valueOf(rs.getInt(1));
@@ -73,5 +85,53 @@ public class Test {
         	
         }
 		return strss;
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static void testConn(){
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try{
+    		conn = DBUtils.getConnection();
+    		String sql = "SELECT TITLE, DESCP, PICURL, URL FROM M_MONTH_RECOM WHERE FLAG='Y'";
+    		ps = conn.prepareStatement(sql);
+    		rs = ps.executeQuery();
+    		if(rs.next()){
+    			System.out.println(rs.getString("TITLE"));
+    			System.out.println(rs.getString("DESCP"));
+    			System.out.println(rs.getString("PICURL"));
+    			System.out.println(rs.getString("URL"));
+    		}
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}finally{
+			DBUtils.free(conn, ps, rs);
+		}
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public static String getKeyValue(String key){
+		String result = null;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try{
+    		conn = DBUtils.getConnection();
+    		String sql = "SELECT MSG_RESP FROM M_MONTH_NEWS_RESP WHERE FLAG='Y' AND KEY_VALUE=?";
+    		ps = conn.prepareStatement(sql);
+    		ps.setString(1, key);
+    		rs = ps.executeQuery();
+    		if(rs.next()){
+    			result = rs.getString("MSG_RESP");
+    		}
+		}catch(Exception e){
+			result = "未知错误！请稍后再试！";
+			System.out.println(e.getMessage());
+		}finally{
+			DBUtils.free(conn, ps, rs);
+		}
+		return result;
 	}
 }

@@ -95,7 +95,8 @@ public static String processRequest(HttpServletRequest request) {
             	String eventKey = requestMap.get("EventKey");  
             	  
                 if (eventKey.equals("11")) {  
-                    respContent = "品牌介绍被点击！";  
+                    //respContent = "品牌介绍按钮被点击";
+                    return ServiceFunctions.getBrandNewsMessage(newsMessage, "11");
                 } else if (eventKey.equals("12")) { 
                 	//最新优惠
                     return ServiceFunctions.getTextMessage(textMessage, "12");
@@ -109,9 +110,11 @@ public static String processRequest(HttpServletRequest request) {
                     //respContent = "我要赚钱被点击！";  
                     return ServiceFunctions.getTextMessage(textMessage, "15");
                 } else if (eventKey.equals("21")) {  
-                    respContent = "今日亮点被点击！";  
+                    //respContent = "今日亮点被点击！"; 
+                	return ServiceFunctions.getDailyNewsMessage(newsMessage, "21");
                 } else if (eventKey.equals("22")) {  
-                    respContent = "往期精华被点击！";  
+                    //respContent = "往期精华被点击！"; 
+                	return ServiceFunctions.getDailyNewsMessage(newsMessage, "22");
                 }
             }  
         }  
