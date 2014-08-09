@@ -13,7 +13,8 @@ public static String processRequest(HttpServletRequest request) {
 	String respMessage = null;  
     try {  
         // 默认返回的文本消息内容  
-        String respContent = "请求处理异常，请稍候尝试！";  
+        @SuppressWarnings("unused")
+		String respContent = "请求处理异常，请稍候尝试！";  
 
         // xml请求解析  
         Map<String, String> requestMap = MessageUtil.parseXml(request);  
@@ -99,21 +100,27 @@ public static String processRequest(HttpServletRequest request) {
                     return ServiceFunctions.getBrandNewsMessage(newsMessage, "11");
                 } else if (eventKey.equals("12")) { 
                 	//最新优惠
+                	System.out.println("最新优惠被点击");
                     return ServiceFunctions.getTextMessage(textMessage, "12");
                 } else if (eventKey.equals("13")) {  
                 	// 创建图文消息  
+                	System.out.println("图文消息被点击");
                 	return ServiceFunctions.getNewsMessage(newsMessage, "13");
                 } else if (eventKey.equals("14")) {  
-                    //respContent = "自助客服被点击！";  
+                    //respContent = "自助客服被点击！"; 
+                	System.out.println("自助客服被点击");
                     return ServiceFunctions.getTextMessage(textMessage, "14");
                 } else if (eventKey.equals("15")) {  
                     //respContent = "我要赚钱被点击！";  
+                	System.out.println("我要赚钱被点击");
                     return ServiceFunctions.getTextMessage(textMessage, "15");
                 } else if (eventKey.equals("21")) {  
                     //respContent = "今日亮点被点击！"; 
+                	System.out.println("今日亮点被点击");
                 	return ServiceFunctions.getDailyNewsMessage(newsMessage, "21");
                 } else if (eventKey.equals("22")) {  
                     //respContent = "往期精华被点击！"; 
+                	System.out.println("往期精华被点击");
                 	return ServiceFunctions.getDailyNewsMessage(newsMessage, "22");
                 }
             }  

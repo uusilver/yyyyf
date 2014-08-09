@@ -69,7 +69,7 @@ public class ServiceFunctions {
         }//end of if
 		else if("22".equals(content)){
 			//2表示回顾往期的刊数
-			articleList = InforPool.getFashionNewsFromPool("all",2);
+			articleList = InforPool.getFashionNewsFromPool("all",3);
             newsMessage.setArticleCount(articleList.size());  
             newsMessage.setArticles(articleList);  
             return MessageUtil.newsMessageToXml(newsMessage); 
@@ -136,7 +136,7 @@ public class ServiceFunctions {
 	            			ps.setString(1, agentID);
 	            			ps.setString(2, agentCode);
 	            			ps.executeUpdate();
-	            			return "申请成功！您的推广码是："+agentCode;
+	            			return "恭喜您！申请成功！您的推广码是："+agentCode;
 	            		}
             		}catch(Exception e){
             			System.out.println(e.getMessage());
@@ -153,6 +153,8 @@ public class ServiceFunctions {
         		return strss;
         	}
         	
+        }else{
+        	return "未知请求！请确认格式！";
         }
 		return strss;
 	}

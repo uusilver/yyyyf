@@ -15,6 +15,7 @@ import com.auto.msg.resp.Article;
 
 public class InforPool {
 	
+	@SuppressWarnings("unused")
 	private static Logger log = LoggerFactory.getLogger(InforPool.class);  
 	
 	private final static Map<String, Article> monNewsPool = new HashMap<String, Article>();
@@ -43,14 +44,14 @@ public class InforPool {
 	    	        article.setUrl(rs.getString("URL"));  
 	    		}
 	    		monNewsPool.put(key, article);
-	    		log.info("New one added in pool");
+	    		//System.out.println("New one added in pool");
 			}catch(Exception e){
 				System.out.println(e.getMessage());
 			}finally{
 				DBUtils.free(conn, ps, rs);
 			}
 		}else{
-			log.info("Directly get from pool");
+			//System.out.println("Directly get from pool");
 		}
 		return article;
 	}
@@ -77,14 +78,14 @@ public class InforPool {
 	    	        article.setUrl(rs.getString("URL"));  
 	    		}
 	    		monNewsPool.put(key, article);
-	    		log.info("New one added in pool");
+	    		//System.out.println("New one added in pool");
 			}catch(Exception e){
-				System.out.println(e.getMessage());
+				System.out.println("Errors happened at InforPool.getBrandNewsFromPool:"+e.getMessage());
 			}finally{
 				DBUtils.free(conn, ps, rs);
 			}
 		}else{
-			log.info("Directly get from pool");
+			//log.info("Directly get from pool");
 		}
 		return article;
 	}
@@ -106,15 +107,15 @@ public class InforPool {
 	    			result = rs.getString("MSG_RESP");
 	    		}
 	    		respPool.put(key, result);
-	    		log.info("Put new in respPool");
+	    		//log.info("Put new in respPool");
 			}catch(Exception e){
 				result = e.getMessage();
-				System.out.println(e.getMessage());
+				System.out.println("Errors happened at InforPool.getNewsFromPool:"+e.getMessage());
 			}finally{
 				DBUtils.free(conn, ps, rs);
 			}
 		}else{
-			log.info("From Pool");
+			//log.info("From Pool");
 		}
 		return result;
 	}
@@ -146,14 +147,14 @@ public class InforPool {
 	    	        index++;
 	    		}
 	    		newsPool.put(key, list);
-	    		log.info("New one added in pool");
+	    		//log.info("New one added in pool");
 			}catch(Exception e){
-				System.out.println(e.getMessage());
+				System.out.println("Errors happened at InforPool.getFashionNewsFromPool:"+e.getMessage());
 			}finally{
 				DBUtils.free(conn, ps, rs);
 			}
 		}else{
-			log.info("Directly get from pool");
+			//log.info("Directly get from pool");
 		}
 		return list;
 	}
