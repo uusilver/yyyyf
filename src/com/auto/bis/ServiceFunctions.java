@@ -105,10 +105,10 @@ public class ServiceFunctions {
 		if(content.startsWith("#")){
         	String[] str = content.split("#");
         	try{
-        		if(str[3].length()!=11){
-        			return "手机格式错误，请检查";
-        		}
             	if(str[1].equalsIgnoreCase("ZQ")){
+            		if(str[3].length()!=11){
+            			return "手机格式错误，请检查";
+            		}
             		Connection conn = null;
             		PreparedStatement ps = null;
             		ResultSet rs = null;
@@ -136,11 +136,11 @@ public class ServiceFunctions {
 	            			ps.setString(1, agentID);
 	            			ps.setString(2, agentCode);
 	            			ps.executeUpdate();
-	            			return "恭喜您！申请成功！您的推广码是："+agentCode+"！ 请回复#ZH#推广码#支付宝/财付通#账号 来绑定您的返利账号，例：#ZH#8wq#支付宝#1234567";
+	            			return "恭喜您！申请成功！您的推广码是：>"+agentCode+"<(不包含><符) 请回复#ZH#推广码#支付宝或者财付通#账号 来绑定您的返利账号，例：#ZH#8wq#支付宝#1234567";
 	            		}
             		}catch(Exception e){
             			System.out.println(e.getMessage());
-            			return e.getMessage();
+            			return strss;
             			//return "系统错误，请稍后再试!";
             		}finally{
             			DBUtils.free(conn, ps, rs);
