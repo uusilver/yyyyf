@@ -101,7 +101,7 @@ public class ServiceFunctions {
 	}
 	//进行邀请码的获取，保存
 	public static String getAgentCode(String content){
-		String strss = "格式错误请检查！格式:#ZQ#姓名#手机号，例子：#ZQ#张三#13841213245";
+		String strss = "内容错误请检查！请您仔细阅读参考示例";
 		if(content.startsWith("#")){
         	String[] str = content.split("#");
         	try{
@@ -136,7 +136,7 @@ public class ServiceFunctions {
 	            			ps.setString(1, agentID);
 	            			ps.setString(2, agentCode);
 	            			ps.executeUpdate();
-	            			return "恭喜您！申请成功！您的推广码是："+agentCode;
+	            			return "恭喜您！申请成功！您的推广码是："+agentCode+"！ 请回复#ZH#推广码#支付宝/财付通#账号 来绑定您的返利账号，例：#ZH#8wq#支付宝#1234567";
 	            		}
             		}catch(Exception e){
             			System.out.println(e.getMessage());
@@ -145,18 +145,31 @@ public class ServiceFunctions {
             		}finally{
             			DBUtils.free(conn, ps, rs);
             		}
-            	}else{
+            	}//获得邀请码分支
+            	if(str[1].equalsIgnoreCase("ZH")){
+            		Connection conn = null;
+            		PreparedStatement ps = null;
+            		conn = DBUtils.getConnection();
+            		String sql = "UPDATE m_agent_code SET AGENT_ACCOUNT=?, AGENT_ACCOUNT_TYPE=? where AGENT_CODE=?";
+            		ps=conn.prepareStatement(sql);
+            		ps.setString(1, str[4]);
+            		ps.setString(2, str[3]);
+            		ps.setString(3, str[2]);
+            		ps.executeUpdate();
+            		return "恭喜账号绑定成功！祝您获利多多！";
+            		
+            	}//绑定支付宝或者财付通账号
+            	else{
             		return strss; 
             	}
         	}catch(Exception e){
         		System.out.println(e.getMessage());
-        		return strss;
+        		return e.getMessage();
         	}
         	
         }else{
         	return "未知请求！请确认格式！";
         }
-		return strss;
 	}
 	//根据键值获得对应的相应内容
 	
