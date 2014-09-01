@@ -3,17 +3,22 @@ import java.util.Date;
 import java.util.Map;  
 import javax.servlet.http.HttpServletRequest;  
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.auto.msg.resp.NewsMessage;
 import com.auto.msg.resp.TextMessage;  
 import com.auto.util.MessageUtil; 
 
 public class CoreService {
 	
+	private static Logger log = LoggerFactory.getLogger(CoreService.class);  
+	
 public static String processRequest(HttpServletRequest request) {  
 	String respMessage = null;  
     try {  
         // 默认返回的文本消息内容  
-        @SuppressWarnings("unused")
+    	log.info("开始处理请求");
 		String respContent = "请求处理异常，请稍候尝试！";  
 
         // xml请求解析  
@@ -94,10 +99,12 @@ public static String processRequest(HttpServletRequest request) {
             else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {  
                 // TODO 自定义菜单权没有开放，暂不处理该类消息  
             	String eventKey = requestMap.get("EventKey");  
-            	  
+            	log.info("用户点击:"+eventKey);
                 if (eventKey.equals("11")) {  
-                    //respContent = "品牌介绍按钮被点击";
-                    return ServiceFunctions.getBrandNewsMessage(newsMessage, "11");
+                    respContent = "品牌介绍按钮被点击";
+                    log.info("返回结果:"+respContent);
+                    return respContent;
+                    //return ServiceFunctions.getBrandNewsMessage(newsMessage, "11");
                 } else if (eventKey.equals("12")) { 
                 	//最新优惠
                 	System.out.println("最新优惠被点击");

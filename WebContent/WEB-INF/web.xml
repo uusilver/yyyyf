@@ -21,4 +21,35 @@
         <servlet-name>coreServlet</servlet-name>  
         <url-pattern>/coreServlet</url-pattern>  
     </servlet-mapping>  
+    
+    
+   <servlet>
+  	<servlet-name>RetreiveAgentCode</servlet-name>
+    <servlet-class>com.auto.bis.RetreiveAgentCode</servlet-class>
+  </servlet>
+  
+   <servlet>
+  	<servlet-name>CheckAgentTelno</servlet-name>
+    <servlet-class>com.auto.bis.CheckAgentTelno</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>QueryAgentNo</servlet-name>
+    <servlet-class>com.auto.bis.QueryAgentNo</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>RetreiveAgentCode</servlet-name>
+    <url-pattern>/RetreiveAgentCode</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>CheckAgentTelno</servlet-name>
+    <url-pattern>/CheckAgentTelno</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>QueryAgentNo</servlet-name>
+    <url-pattern>/QueryAgentNo</url-pattern>
+  </servlet-mapping>
 </web-app>

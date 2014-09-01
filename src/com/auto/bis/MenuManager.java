@@ -18,7 +18,7 @@ public class MenuManager {
         // 第三方用户唯一凭证  
         String appId = "wx1deac355c85a2e85";  
         // 第三方用户唯一凭证密钥  
-        String appSecret = "afd24b571800a255eea67ee67a10192a ";  
+        String appSecret = "59c0f9a6dd469d8bc6f8ff0a950f9238";  
   
         // 调用接口获取access_token  
         AccessToken at = WeixinUtil.getAccessToken(appId, appSecret);  
@@ -46,41 +46,41 @@ public class MenuManager {
 //        btn11.setType("click");  
 //        btn11.setKey("11");  
   
-        CommonButton btn11 = new CommonButton();  
-        btn11.setName("品牌介绍");  
-        btn11.setType("click");  
-        btn11.setKey("11");  
+    	ViewButton btn11 = new ViewButton();  
+        btn11.setName("品牌历史");  
+        btn11.setType("view");  
+        btn11.setUrl("http://yyyyf.sinaapp.com/about4wx.html");  
   
-        CommonButton btn12 = new CommonButton();  
-        btn12.setName("最新优惠");  
-        btn12.setType("click");  
-        btn12.setKey("12"); 
-        
-        CommonButton btn13 = new CommonButton();  
-        btn13.setName("当月推荐");  
-        btn13.setType("click");  
-        btn13.setKey("13"); 
+//        CommonButton btn12 = new CommonButton();  
+//        btn12.setName("最新优惠");  
+//        btn12.setType("click");  
+//        btn12.setKey("12"); 
+//        
+        ViewButton btn12 = new ViewButton();  
+        btn12.setName("当月推荐");  
+        btn12.setType("view");  
+        btn12.setUrl("http://wd.koudai.com/item.html?itemID=21169354&p=-1"); 
   
-        CommonButton btn14 = new CommonButton();  
-        btn14.setName("自助客服");  
-        btn14.setType("click");  
-        btn14.setKey("14");  
+//        CommonButton btn14 = new CommonButton();  
+//        btn14.setName("自助客服");  
+//        btn14.setType("click");  
+//        btn14.setKey("14");  
           
-        CommonButton btn15 = new CommonButton();  
-        btn15.setName("我要赚钱");  
-        btn15.setType("click");  
-        btn15.setKey("15");  
+        ViewButton btn21 = new ViewButton();  
+        btn21.setName("申请推广码");  
+        btn21.setType("view");  
+        btn21.setUrl("http://yyyyf.sinaapp.com/agent_apply.html");
   
-        CommonButton btn21 = new CommonButton();  
-        btn21.setName("今日亮点");  
-        btn21.setType("click");  
-        btn21.setKey("21");  
+        ViewButton btn22 = new ViewButton();  
+        btn22.setName("查询推广码");  
+        btn22.setType("view");  
+        btn22.setUrl("http://yyyyf.sinaapp.com/agent_query.html");  
         
   
-        CommonButton btn22 = new CommonButton();  
-        btn22.setName("往期精华");  
-        btn22.setType("click");  
-        btn22.setKey("22");  
+//        CommonButton btn22 = new CommonButton();  
+//        btn22.setName("往期精华");  
+//        btn22.setType("click");  
+//        btn22.setKey("22");  
   
 //        CommonButton btn23 = new CommonButton();  
 //        btn23.setName("美女电台");  
@@ -131,11 +131,11 @@ public class MenuManager {
         btn1.setUrl("http://wd.koudai.com/?userid=692450"); 
   
         ComplexButton mainBtn2 = new ComplexButton();  
-        mainBtn2.setName("互动中心");  
-        mainBtn2.setSub_button(new Button[] { btn11, btn12, btn13, btn14, btn15 });  
+        mainBtn2.setName("新闻中心");  
+        mainBtn2.setSub_button(new Button[] { btn11, btn12 });  
   
         ComplexButton mainBtn3 = new ComplexButton();  
-        mainBtn3.setName("银领时尚");  
+        mainBtn3.setName("我要赚钱");  
         mainBtn3.setSub_button(new Button[] { btn21, btn22 });  
   
         /** 

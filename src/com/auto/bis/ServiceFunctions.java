@@ -56,7 +56,7 @@ public class ServiceFunctions {
             newsMessage.setArticles(articleList);  
             return MessageUtil.newsMessageToXml(newsMessage);  
         }//end of if  
-		return null;
+		return "未知错误！";
 	}
 	//获得银领时尚里的内容
 	public static String getDailyNewsMessage(NewsMessage newsMessage, String content){
