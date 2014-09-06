@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <link rel="shortcut icon" href="images/favicon.ico" />
-<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="robots" content="index, follow" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<title>品牌介绍</title>
+<title></title>
 <!-- ////////////////////////////////// -->
 <!-- //      Start Stylesheets       // -->
 <!-- ////////////////////////////////// -->
@@ -18,19 +18,26 @@
 <!-- ////////////////////////////////// -->
 <!-- //      Javascript Files        // -->
 <!-- ////////////////////////////////// -->
-
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	//Menu
+	var url = window.location.href;
+	var agentCode = url.split("?")[1].split("=")[1];
+	$("#ageCode").append("您的推广码是:"+agentCode);				 
+});
+</script>
 </head>
 <body>
 
 <div id="outer-container">
 	<div id="container">
-	<div id="top">
-        	<div id="logo"><a href="index.html"><img src="images/logo.png" alt=""  /></a></div><!-- end #logo -->
-    </div><!-- end #top -->
+    	
         <div id="header" class="innerpage">
         	<div class="shadow"></div>
         	<div class="container940">
-        		<h1 class="pagetitle">关于悠悠银艺坊</h1>
+        		<h1 class="pagetitle">恭喜，您成功申请到推广码!</h1>
+                <div class="pagedesc"></div>
                 <div class="clear"></div><!-- clear float -->
             </div><!-- end container940 -->
         </div><!-- end #header -->
@@ -39,20 +46,10 @@
 		<div id="content" class="withsidebar">
         	<div id="main">
             	<div id="maincontent">
-                    <h2 class="title_pattern uppercase"><span>悠悠银艺坊</span></h2>
-                    <p>“悠悠银艺坊”为我公司银饰品专用商标，已被中国保护消费者基金会推介为“质量稳定、服务完善消费者满意品牌”。公司设计中心依据流行趋势，不断推出彰显个性的时尚银饰产品，款式新颖、种类丰富、工艺精美，分为成人类、儿童类、餐具类。“悠悠银艺坊”在南京宝庆银楼、南京新百、南京中央、南京山百、南通市及所辖市县文峰商厦、苏州一百、淮安新亚、连云港、四川成都等地设有专卖店和专柜。</p>
+                    <h2 class="title_pattern uppercase"><span id="ageCode" class="colortext"></span></h2>
+                    <p>将推广码附在产品的购买信息上，推广员将会获得丰厚返利！ <h2><span class="colortext">最高返利10%</span></h2>  </p>
                     
-                  
-                    
-                   
-                    
-                    <div class="separator"></div>
-                    
-                    <h2 class="title_pattern uppercase"><span>南京宝庆珠宝首饰发展有限公司</span></h2>
-                    <p>南京宝庆珠宝首饰发展有限公司是南京宝庆首饰总公司的子公司。宝庆首饰总公司的前身是建于清朝嘉庆年间的宝庆银楼，距今已有200年历史。宝庆首饰总公司现为国家轻工业部、中国人民银行的黄金、白银饰品、摆件内外销定点生产厂,且已通过ISO9001国际质量体系认证。“宝庆”牌首饰已被评为江苏省著名品牌。</p>
-                    <img src="images/content/pic13.jpg" alt="" class="frame" />
-                    <span class="shadowimg610"></span>
-                    
+                    <div class="separator line"></div>
                     
                      <div class="clear"></div><!-- clear float -->
                 </div><!-- end #maincontent -->
@@ -78,6 +75,27 @@
                 <div class="clear"></div><!-- clear float -->
             </div><!-- end #main -->
 		</div><!-- end #content -->
+        
+		
+        
+        <div id="after-footer">
+        	<div class="container940">
+                <div id="sn">
+                	<ul>
+                    	<li><a href="#"><img src="images/icons/fb.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icons/stumbleupon.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icons/lastfm.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icons/twitter.png" alt="" /></a></li>
+                        <li><a href="#"><img src="images/icons/youtube.png" alt="" /></a></li>
+                    </ul>
+                </div>
+                <div id="footertext">
+                    Copyright &copy;2014 Mind-T.  All Rights Reserved.
+                </div>
+               <div class="clear"></div><!-- clear float -->
+            </div><!-- end container940 -->
+        </div><!-- end #after-footer -->
+        
 	</div><!-- end #container -->
 </div><!-- end #outer-container -->
 		

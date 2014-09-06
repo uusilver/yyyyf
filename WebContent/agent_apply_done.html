@@ -1,60 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<link rel="shortcut icon" href="images/favicon.ico" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="robots" content="index, follow" />
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<title></title>
-<!-- ////////////////////////////////// -->
-<!-- //      Start Stylesheets       // -->
-<!-- ////////////////////////////////// -->
-<link href="styles/style.css" rel="stylesheet" type="text/css" />
-<link href="styles/inner.css" rel="stylesheet" type="text/css" />
-<!--[if lt IE 9]>
-<link href="styles/ie8.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<!-- ////////////////////////////////// -->
-<!-- //      Javascript Files        // -->
-<!-- ////////////////////////////////// -->
-<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
-<script type="text/javascript">
-jQuery(document).ready(function(){
-	//Menu
-	var url = window.location.href;
-	var agentCode = url.split("?")[1].split("=")[1];
-	$("#ageCode").append("您的推广码是:"+agentCode);				 
-});
-</script>
-</head>
-<body>
+<title>申请推广码</title>
+    <head>
+        <link rel="shortcut icon" href="images/favicon.ico" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="robots" content="index, follow" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+        <title>Forms</title>
+        <meta name="description" content="">
+        <meta name="author" content="ink, cookbook, recipes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<div id="outer-container">
-	<div id="container">
-    	
-        <div id="header" class="innerpage">
-        	<div class="shadow"></div>
-        	<div class="container940">
-        		<h1 class="pagetitle">恭喜，您成功申请到推广码!</h1>
-                <div class="pagedesc"></div>
-                <div class="clear"></div><!-- clear float -->
-            </div><!-- end container940 -->
-        </div><!-- end #header -->
+        <!-- Place favicon.ico and apple-touch-icon(s) here  -->
+
+
+        <!-- load inks css from the cdn -->
+        <link href="styles/style.css" rel="stylesheet" type="text/css" />
+		<link href="styles/inner.css" rel="stylesheet" type="text/css" />
+       <link href="styles/ink_flex.css" rel="stylesheet" type="text/css" />
+		<link href="styles/font_awsome.css" rel="stylesheet" type="text/css" />
         
         
-		<div id="content" class="withsidebar">
-        	<div id="main">
-            	<div id="maincontent">
-                    <h2 class="title_pattern uppercase"><span id="ageCode" class="colortext"></span></h2>
-                    <p>将推广码附在产品的购买信息上，推广员将会获得丰厚返利！ <h2><span class="colortext">最高返利10%</span></h2>  </p>
-                    
-                    <div class="separator line"></div>
-                    
-                     <div class="clear"></div><!-- clear float -->
-                </div><!-- end #maincontent -->
-                <div id="sidebar">
-                	<ul>
+
+        <!-- load inks css for IE8 -->
+        <!--[if lt IE 9 ]>
+            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.5/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <![endif]-->
+
+        <!-- test browser flexbox support and load legacy grid if unsupported -->
+        
+
+        <!-- load inks javascript files from the cdn -->
+        <script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		//Menu
+		var url = window.location.href;
+		var agentCode = url.split("?")[1].split("=")[1];
+		$("#ageCode").append("您的推广码是:"+agentCode);				 
+	});
+</script>
+        
+
+
+        <style type="text/css">
+
+            body {
+                background: #ededed;
+            }
+            header {
+                padding: 2em 0;
+                margin-bottom: 2em;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            header h1 small:before  {
+                content: "|";
+                margin: 0 0.5em;
+                font-size: 1.6em;
+            }
+            footer {
+                background: #ccc;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        <div class="ink-grid">
+
+            <!--[if lte IE 9 ]>
+            <div class="ink-alert basic" role="alert">
+                <button class="ink-dismiss">&times;</button>
+                <p>
+                    <strong>You are using an outdated Internet Explorer version.</strong>
+                    Please <a href="http://browsehappy.com/">upgrade to a modern browser</a> to improve your web experience.
+                </p>
+            </div>
+            -->
+
+            <!-- Add your site or application content here -->
+			<div id="top">
+        		<div id="logo"><a href="index.html"><img src="images/logo.png" alt=""  /></a></div><!-- end #logo -->
+        	</div><!-- end #top -->
+        
+	        <div id="header" class="innerpage">
+	        	<div class="shadow"></div>
+	        	<div class="container940">
+	        		<h1 class="pagetitle">恭喜，您成功申请到推广码!</h1>
+	                <div class="pagedesc"></div>
+	                <div class="clear"></div><!-- clear float -->
+	            </div><!-- end container940 -->
+	        </div><!-- end #header -->
+             <h3 class="title_pattern uppercase"><span><span id="ageCode" class="colortext"></span></h3>
+                    <p>将推广码附在产品的购买信息上，推广员将会获得丰厚返利！</p> 
+                    <span class="colortext">最高返利10%</span></p>
+             <br/><p><a href="agent_apply_detail.html">详情点击</a></p>
+
+            <div class="column-group gutters">
+                <div class="all-50 small-100 tiny-100">
+                    <p>
+                    	<ul>
                     	<li class="widget-container">
                         	<h2 class="widget-title">联系我们</h2>
                             <div class="textwidget">
@@ -68,36 +119,11 @@ jQuery(document).ready(function(){
                             </p>
                             </div>
                         </li>
-                    	
-                    </ul>
-                </div><!-- end #sidebar -->
-                
-                <div class="clear"></div><!-- clear float -->
-            </div><!-- end #main -->
-		</div><!-- end #content -->
-        
-		
-        
-        <div id="after-footer">
-        	<div class="container940">
-                <div id="sn">
-                	<ul>
-                    	<li><a href="#"><img src="images/icons/fb.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/icons/stumbleupon.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/icons/lastfm.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/icons/twitter.png" alt="" /></a></li>
-                        <li><a href="#"><img src="images/icons/youtube.png" alt="" /></a></li>
-                    </ul>
+                    	</ul>
+                    </p>
+                   
                 </div>
-                <div id="footertext">
-                    Copyright &copy;2014 Mind-T.  All Rights Reserved.
-                </div>
-               <div class="clear"></div><!-- clear float -->
-            </div><!-- end container940 -->
-        </div><!-- end #after-footer -->
-        
-	</div><!-- end #container -->
-</div><!-- end #outer-container -->
-		
-</body>
+            </div>
+           
+    </body>
 </html>

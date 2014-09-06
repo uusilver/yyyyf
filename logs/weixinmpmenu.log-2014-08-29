@@ -1,0 +1,6 @@
+[ERROR] 2014-08-29 14:34:59,881              com.auto.util.WeixinUtil     - 创建菜单失败 errcode:40026 errmsg:invalid sub button key size
+ [INFO ] 2014-08-29 14:34:59,886              com.auto.bis.MenuManager     - 菜单创建失败，错误码：40026
+ [ERROR] 2014-08-29 14:38:29,596              com.auto.util.WeixinUtil     - 创建菜单失败 errcode:40026 errmsg:invalid sub button key size
+ [INFO ] 2014-08-29 14:38:29,599              com.auto.bis.MenuManager     - 菜单创建失败，错误码：40026
+ [INFO ] 2014-08-29 14:39:16,931              com.auto.bis.MenuManager     - 菜单创建成功！
+ 
